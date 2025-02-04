@@ -2,8 +2,13 @@
 📌 Overview
 This project is a multi-company web scraping utility built using Python and Selenium to extract financial data from Stock Analysis. It navigates through financial tabs for multiple companies—including Income Statement, Balance Sheet, Cash Flow, and Ratios—and saves the extracted data as CSV files.
 
+🔥 New Feature:
+
+Users can now provide stock tickers & URLs in a CSV file (tickers.csv), eliminating the need to modify the script manually.
+A sample tickers.csv file is included to help users get started quickly.
 ⚡ Features
 ✅ Supports multiple stock symbols (e.g., GM, AAPL, TSLA).
+✅ Reads stock tickers & URLs from tickers.csv (no need to edit the script).
 ✅ Scrapes key financial data from multiple tabs:
 
 📄 Income Statement (default tab)
@@ -38,28 +43,25 @@ pip install -r requirements.txt
 🔹 Firefox Browser
 🔹 GeckoDriver
 🚀 Usage
-1️⃣ Update paths in the script
-Open scraper.py and modify:
+1️⃣ Edit tickers.csv to Add Companies
+Instead of modifying Python code, simply edit tickers.csv with stock symbols and their corresponding URLs.
 
-GECKODRIVER_PATH: Path to your GeckoDriver executable.
-FIREFOX_BINARY_PATH: Path to your Firefox installation.
-2️⃣ Define companies to scrape
-Modify the companies dictionary inside main():
+📄 Example tickers.csv (included in the repo):
 
-python
+csv
 Copy
 Edit
-companies = {
-    "GM": "https://stockanalysis.com/stocks/gm/financials/",
-    "AAPL": "https://stockanalysis.com/stocks/aapl/financials/",
-    "TSLA": "https://stockanalysis.com/stocks/tsla/financials/",
-}
-3️⃣ Run the script
+ticker,url
+GM,https://stockanalysis.com/stocks/gm/financials/
+AAPL,https://stockanalysis.com/stocks/aapl/financials/
+TSLA,https://stockanalysis.com/stocks/tsla/financials/
+MSFT,https://stockanalysis.com/stocks/msft/financials/
+2️⃣ Run the script
 bash
 Copy
 Edit
 python scraper.py
-4️⃣ View results
+3️⃣ View results
 Extracted CSV files will be saved inside the financial_data/ folder.
 
 📂 File Structure
@@ -69,10 +71,10 @@ Edit
 financial-data-scraper/
 ├── financial_data/             # Output folder for CSV files
 │   ├── GM_income_statement.csv  # GM Income Statement
-│   ├── GM_balance_sheet.csv     # GM Balance Sheet
-│   ├── AAPL_income_statement.csv # AAPL Income Statement
-│   ├── TSLA_cash_flow.csv        # TSLA Cash Flow
+│   ├── AAPL_balance_sheet.csv   # AAPL Balance Sheet
+│   ├── TSLA_cash_flow.csv       # TSLA Cash Flow
 │   └── ... (more files)
+├── tickers.csv                 # User-provided ticker/URL input (new feature!)
 ├── scraper.py                  # Main scraper script
 ├── requirements.txt            # Python dependencies
 ├── README.md                   # Project documentation
@@ -88,6 +90,8 @@ financial-data-scraper/
 ❌ Timeout Errors → Increase Selenium WebDriverWait timeout values.
 
 🎯 Future Enhancements
-🔜 User input for stock symbols instead of hardcoded list.
-🔜 Multi-threading for faster data extraction.
-🔜 Database integration to store financial data.
+🔜 Automatic detection of new stock listings
+🔜 Multi-threading for faster data extraction
+🔜 Database integration to store financial data
+
+🎉 Now users can easily scrape financials by just updating a CSV! 🚀📊💰
